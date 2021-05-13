@@ -1,7 +1,7 @@
 import fw, { FrameworkEnv, Log, PageAccessTokenStruct } from '@bot.elife/framework';
 import 'dotenv/config';
 import logger from '@logger/winston';
-import routes from './routes';
+import routes from '@routes/routes';
 
 
 start();
@@ -14,7 +14,7 @@ async function start(){
             },
       
             facebook: {
-                pageAccessToken: JSON.parse(process.env.PAGE_ACCESS_TOKEN as string) as PageAccessTokenStruct[],
+                pageAccessToken: [{pageId:'242830789813847',token:'EAAH7ZCzwnuywBANouZBIDNAgZAagoL5O4vSUEbUCuDIBgLhFUozDgM6AyYpc2gnh6RgsVcUZBVZBStJT6ptAU6aDnBk0cEKRpJa7iwkoMqeH5ZBLcvoDDrH2Buua0nRJkEcCS8I6KzMwTlHRyF8lAtCULRYAGFHj4qhzz6tM3LcgZDZD'}] as PageAccessTokenStruct[],
                 validationToken: (process.env.VALIDATION_TOKEN as string),
                 appSecretKey: (process.env.APP_SECRET_KEY as string),
             },

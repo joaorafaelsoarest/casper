@@ -14,12 +14,8 @@ function create(COLLECTION: string, mongo: any){
 
 function index(COLLECTION: String, mongo: any){
     return async (request: any, response: any) => {
-        const { theme } = request.query;
-        let criteria = {};
-        if(theme){
-            criteria = {theme}
-        }
-        const result = await mongo.find(COLLECTION, criteria);
+        const { _id } = request.params;
+        const result = await mongo.find(COLLECTION, {_id : new ObjectId(_id) });
         response.status(200).json(result);
     }
 }
