@@ -40,4 +40,11 @@ function delete_n(COLLECTION: string, mongo: any){
     }
 }
 
-export { create, index, update, delete_n };
+function list(COLLECTION: String, mongo: any){
+    return async (_, response: any) => {
+        const result = await mongo.find(COLLECTION, {});
+        response.status(200).json(result);
+    }
+}
+
+export { create, index, update, delete_n, list };

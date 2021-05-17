@@ -1,29 +1,28 @@
 import { Action } from '@interfaces';
 
-const execute: Action = async ({ dialogflow, framework }) => {
+const execute: Action = async ({ framework, dialogflow }) => {
 
-    
-  const notices = framework.mongodb.find("notice", {"theme": "esportes"});
+    const noticias: any = await framework.mongodb.find("notice", {"theme": "esportes"});
 
-  dialogflow.messages[0].attachment.payload.elements = await
-      notices.map((notice) => {
-        return {
-          title: `${notice.title}`,
-          subtitle: `${notice.description}`,
-          image_url: `${notice.linkImage}`,
-          buttons: [
-            {
-              type: 'web_url',
-              title: 'Ver notícia',
-              url: `${notice.linkImage}`,
-            },
-          ],
-        };
-      });
+    dialogflow.messages[0].facebook.attachment.payload.elements = 
+    noticias.map((noticia) => {
+      return {
+        title: `${noticia.title}`,
+        subtitle: `${noticia.description}`,
+        image_url: `${noticia.linkImage}`,
+        buttons: [
+          {
+            type: 'web_url',
+            title: 'Ver notícia',
+            url: `${noticia.linkImage}`
+          }
+        ],
+      };
+    });
 
-  return {
-    messages: dialogflow.messages[0],
-  };
+    return {
+    messages: [dialogflow.messages[0]],
+  }
 };
 
 export default execute;

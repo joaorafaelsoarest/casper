@@ -24,4 +24,5 @@ export default function (framework: Framework) {
   app.get('/notices/:_id', notices.index(COLLECTION, mongo));
   app.put('/notices', notices.update(COLLECTION, mongo));
   app.delete('/notices/:_id', notices.delete_n(COLLECTION, mongo))
+  app.get('/notices', notices.list(COLLECTION, mongo))
 }
